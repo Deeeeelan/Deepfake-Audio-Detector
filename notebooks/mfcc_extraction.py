@@ -1,11 +1,10 @@
 import numpy as np
 import librosa
-import soundfile as sf
 
-target_sr = 16000
+TARGET_SR = 16000
 
 def extract_mfcc(path):
-    y, sr = librosa.load(path, sr=target_sr)
+    y, sr = librosa.load(path, sr=TARGET_SR)
     mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=25)
     m = np.mean(mfcc, axis=1)
     std = np.std(mfcc, axis=1)
@@ -13,8 +12,7 @@ def extract_mfcc(path):
 
 def make_spectrogram(path):
 
-    # y, sr = sf.read(path, dtype ='float32') # NOTE: using sf consumes high memory for the FoR dataset
-    y, sr = librosa.load(path, sr=target_sr)
+    y, sr = librosa.load(path, sr=TARGET_SR)
 
     size = sr * 3 # 3 seconds
     y_fixed = librosa.util.fix_length(y, size=size)
