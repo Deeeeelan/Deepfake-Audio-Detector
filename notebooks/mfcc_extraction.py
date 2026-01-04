@@ -4,11 +4,8 @@ import soundfile as sf
 
 target_sr = 16000
 
-def extract_mfcc(file_path):
-    y, sr = sf.read(file_path, dtype ='float32')
-    if sr != target_sr:
-        y = librosa.resample(y, orig_sr=sr, target_sr=target_sr)
-        sr = target_sr
+def extract_mfcc(path):
+    y, sr = librosa.load(path, sr=target_sr)
     mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=25)
     m = np.mean(mfcc, axis=1)
     std = np.std(mfcc, axis=1)
