@@ -4,7 +4,7 @@ import soundfile as sf
 
 target_sr = 16000
 
-def extract_mfcc(file_path):    
+def extract_mfcc(file_path):
     y, sr = sf.read(file_path, dtype ='float32')
     if sr != target_sr:
         y = librosa.resample(y, orig_sr=sr, target_sr=target_sr)
@@ -23,9 +23,9 @@ def make_spectrogram(path):
     y_fixed = librosa.util.fix_length(y, size=size)
     y_norm = librosa.util.normalize(y_fixed) # normalize audio to an amplitude of 1
 
-    mel_spectrogram = librosa.feature.melspectrogram(y=y_norm, 
+    mel_spectrogram = librosa.feature.melspectrogram(y=y_norm,
                                                     sr=sr,
-                                                    n_fft=2048, 
+                                                    n_fft=2048,
                                                     hop_length=512,
                                                     n_mels=128)
     log_mel_spectrogram = librosa.power_to_db(mel_spectrogram, ref=np.max)
