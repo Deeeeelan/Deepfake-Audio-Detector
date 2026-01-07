@@ -2,15 +2,15 @@
 
 By: Dylan Tesng
 
-This project uses logistic regression and deep learning to recognize the difference beetwen human and generated speech based on a audio clip.
+This project uses logistic regression and deep learning to recognize the difference between human and generated speech based on a audio clip.
 
 Both models are trained on the ASVspoof 2019 dataset which covers over real human speech as well as various generation methods such as vocoders and neural waveform model/text to speech. The neural network is also trained on The Fake-or-Real Dataset containing text to speech from various sources.
 
-The goal of this project was to generate a machine learning model accuate enough to distinguish from various AI generation and speech sythesis methods while being light enough to work on a consumer laptop.
+The goal of this project was to generate a machine learning model accurate enough to distinguish from various AI generation and speech synthesis methods while being light enough to work on a consumer laptop.
 
 ## Setup
 
-1. Clone the repositiory
+1. Clone the repository
 
     ```bash
     git clone https://github.com/Deeeeelan/Deepfake-Audio-Detector.git
@@ -35,20 +35,19 @@ The goal of this project was to generate a machine learning model accuate enough
 
 Tested on Python 3.13.4.
 
-Used Libaries:
+Used Libraries:
 
 * NumPy
 * Pandas
 * Librosa
 * MatplotLib
-* PyTorch
 * TorchViz
 
 Jupyter notebooks are located in the `notebooks` folder.
 
 ## Datasets
 
-The models in this project were trained off the folowing datasets:
+The models in this project were trained off the following datasets:
 
 [ASVspoof 2019](https://www.asvspoof.org/index2019.html)
 
@@ -62,7 +61,7 @@ The logistic regression model is trained using the normalized average and standa
 
 The convolutional neural network extracts log-scaled Mel-spectrograms and normalizes them.
 
-* All spectrograms are timmed to 3 seconds in length
+* All spectrograms are timed to 3 seconds in length
 * n_fft = 2048, hop_length = 512, n_mels = 128
 
 ## Model Design
@@ -88,7 +87,7 @@ torch.sigmoid(logits)
 
 ### Logistic Regression Model
 
-The model reached a 81% Accuracy, a precision of 98% for fake samples, and aprecision of 34% for real samples.
+The model reached a 81% Accuracy, a precision of 98% for fake samples, and a precision of 34% for real samples.
 
 ![Confusion Matrix for the logistic regression model](/images/confusion_matrix2.png)
 
@@ -100,6 +99,6 @@ The model reached 89% Accuracy, a precision of 97% for fake samples, and a preci
 
 ## Limitations
 
-* The model is trained mostly on clear English speech, and will likely not be accuate in other languages or dirtier sound environments.
+* The model is trained mostly on clear English speech, and will likely not be accurate in other languages or dirtier sound environments.
 * The model is also not trained on leading TTS models (Such as ElevenLabs or Amazon Poly).
 * The neural network is limited to the first 3 seconds of spectrogram data.
